@@ -34,8 +34,7 @@ vi ./config/config.py
 WARNING: this drops all the data. Backup before stopping!
 
 ###### Backup
-Scorebot uses CouchDB to store its data, this is the only state that requires  
-backup.
+Scorebot uses CouchDB to store its data, this is the only state that requires backup.
 ```
 ./ops/backup_db.sh
 ```
@@ -50,15 +49,15 @@ this to avoid HTTP 500 ret-codes while DB is being restarted.
 ./ops/restore_db.sh ./backups/<name_of_the_backup>
 ```
 
-## Integration with JIRA and others
-Typically done via webhook that call scorebot REST API.  
+## Integration with Gerrit and others
+Typically done via webhook which calls scorebot REST API.  
 Currently supported API endpoints:
-* `curl -X POST -d '{"player_name": "mlobur"}' http://<...>/scores/patchset_reviewed`
-* `curl -X POST -d '{"player_name": "mlobur"}' http://<...>/scores/patchset_proposed`
-* `curl -X POST -d '{"player_name": "mlobur"}' http://<...>/scores/patchset_merged`
+* `curl -X POST -d '{"player_name": "mlobur"}' http://server:8080/scores/patchset_reviewed`
+* `curl -X POST -d '{"player_name": "mlobur"}' http://server:8080/scores/patchset_proposed`
+* `curl -X POST -d '{"player_name": "mlobur"}' http://server:8080/scores/patchset_merged`
 
 ## Contributing
-Pull-requests are welcomed. Source code is distributed under MIT.
+Pull requests welcome. Source code is distributed under MIT.
 
 ###### Running a dev server:
 Create venv: `./dev/mk_venv.sh` (requires virtualenv wrapper)  

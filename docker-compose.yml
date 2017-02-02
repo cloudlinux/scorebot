@@ -1,0 +1,28 @@
+version: '2'
+services:
+    scorebot_api:
+      image: lobur/scorebot:v2
+      build:
+        context: .
+        dockerfile: ops/scorebot.Dockerfile
+      container_name: scorebot_api
+      ports:
+       - "8080:8080"
+      volumes:
+       - ./:/usr/src/scorebot
+      links:
+       - scorebot_db
+      environment:
+       - PYTHONPATH=/usr/src/scorebot
+       - DB_ADDR=scorebot_db
+      command: ["python", "-u", "/usr/src/scorebot/scorebot/app.py"]
+
+    scorebot_db:
+      image: lobur/couchdb:1.6.1  # clone of klaemo/couchdb to pin db version
+      container_name: scorebot_db
+      links:
+       - scorebot_backup
+
+    scorebot_backup:
+      image: lobur/couchdb:1.6.1
+      container_name: scorebot_backup

@@ -1,0 +1,6 @@
+python-dateutil
+asyncio
+aiohttp
+aiohttp-devtools
+pycouchdb
+slackclient

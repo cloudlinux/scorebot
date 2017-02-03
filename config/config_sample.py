@@ -1,5 +1,6 @@
 CONF = {
-    # Retrieved from https://your_company.slack.com/services/XXXXX
+    # See https://api.slack.com/bot-users
+    # Register the new bot: https://my.slack.com/services/new/bot
     "slack_token": "xoxb-XXXXXX.....",
 
     # - All teams appearing in players must have corresponding channels

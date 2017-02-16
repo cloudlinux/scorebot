@@ -49,12 +49,18 @@ this to avoid HTTP 500 ret-codes while DB is being restarted.
 ./ops/restore_db.sh ./backups/<name_of_the_backup>
 ```
 
-## Integration with Gerrit and others
-Typically done via webhook which calls scorebot REST API.  
-Currently supported API endpoints:
+## Integrations 
+##### An abstract review system
+Can be done via webhook which calls scorebot REST API. Currently supported API endpoints:
 * `curl -X POST -d '{"player_name": "mlobur"}' http://server:8080/scores/patchset_reviewed`
 * `curl -X POST -d '{"player_name": "mlobur"}' http://server:8080/scores/patchset_proposed`
 * `curl -X POST -d '{"player_name": "mlobur"}' http://server:8080/scores/patchset_merged`
+
+##### Gerrit (via Jenkins job)
+Gerrit does not have webhooks, but scorebot can still be intergrated though a Jenkins job. See example [HERE](integrations/gerrit_jenkins/job_scorebot.sh)
+
+##### Task trackers (e.g. JIRA)
+TBD. More to come once scorebot has corresponding triggers and API endpoints.
 
 ## Contributing
 Pull requests welcome. Source code is distributed under MIT.
@@ -64,8 +70,8 @@ Create venv: `./dev/mk_venv.sh` (requires virtualenv wrapper)
 
 Start DB: `./dev/db.sh`  (non-blocking)
 
-Start API: `./dev/server.sh`  (blocking, must be run from venv) 
-  
+Start API: `./dev/server.sh`  (blocking, must be run from venv)
+
 Posting a score:
 ```
 curl -X POST -d '{"player_name": "rnoyce"}' http://localhost:8000/scores/patchset_reviewed
